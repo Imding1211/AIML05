@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Example</title>
+</head>
+<body>
+    <h1>WebSocket Example</h1>
+    <div id="messages"></div>
+
+    <script>
+        let websocket = new WebSocket("ws://localhost:8765");
+
+        websocket.onmessage = function(event) {
+            let messagesDiv = document.getElementById("messages");
+            let newMessage = document.createElement("div");
+            newMessage.textContent = "Received message: " + event.data;
+            messagesDiv.appendChild(newMessage);
+        };
+
+        websocket.onopen = function() {
+            console.log("Connected to WebSocket server");
+        };
+
+        websocket.onclose = function() {
+            console.log("Disconnected from WebSocket server");
+        };
+    </script>
+</body>
+</html>
